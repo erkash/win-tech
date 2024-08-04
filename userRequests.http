@@ -1,0 +1,19 @@
+### Register
+POST http://127.0.0.1:8337/api/user/register
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "abramovich",
+  "password": "SeniorPhp456"
+}
+
+### Login
+POST http://127.0.0.1:8337/api/user/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "abramovich",
+  "password": "SeniorPhp456"
+}
