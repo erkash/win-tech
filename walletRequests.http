@@ -1,0 +1,35 @@
+### Create wallet
+POST http://127.0.0.1:8337/api/wallet/create
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer 1e498852585afea56d389bba55cca298cc95fff8e52f16531a6de00cc43f6d737d0fa694c697b40ded03a61fad9b53c15c8129dcf6e09cc7d6c44c497c1f82ef
+
+{
+  "currency": "usd"
+}
+
+### Create wallet
+POST http://127.0.0.1:8337/api/wallet/create
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer YOUR_ACCESS_TOKEN
+
+{
+  "currency": "rub"
+}
+
+### Create wallet
+POST http://127.0.0.1:8337/api/wallet/create
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer 1e498852585afea56d389bba55cca298cc95fff8e52f16531a6de00cc43f6d737d0fa694c697b40ded03a61fad9b53c15c8129dcf6e09cc7d6c44c497c1f82ef
+
+{
+  "currency": "gbp"
+}
+
+### Get balance
+GET http://127.0.0.1:8337/api/wallet/1/balance
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer 1e498852585afea56d389bba55cca298cc95fff8e52f16531a6de00cc43f6d737d0fa694c697b40ded03a61fad9b53c15c8129dcf6e09cc7d6c44c497c1f82ef

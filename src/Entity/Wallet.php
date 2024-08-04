@@ -16,7 +16,7 @@ class Wallet
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $balance = null;
 
     #[ORM\Column(length: 3, enumType: CurrencyEnum::class)]
@@ -103,5 +103,14 @@ class Wallet
         }
 
         return $this;
+    }
+
+    public function getFormattedBalance(): float|null
+    {
+        if ($this->balance && $this->balance > 0) {
+            return round((float)$this->balance / 100, 2);
+        }
+
+        return null;
     }
 }
