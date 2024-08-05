@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\DTO\WalletCreateRequest;
+use App\DTO\TransactionRequest;
+use App\DTO\WalletRequest;
 use App\Entity\User;
 use App\Entity\Wallet;
+use App\Service\Transaction\TransactionService;
 use App\Service\Wallet\WalletService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -18,10 +20,7 @@ class WalletController extends AbstractController
 {
     #[Route('/api/wallet/create', methods: ['POST'])]
     public function create(
-        #[MapRequestPayload(
-            acceptFormat: 'json',
-            validationFailedStatusCode: Response::HTTP_BAD_REQUEST
-        )] WalletCreateRequest $walletCreateRequest,
+        #[MapRequestPayload(acceptFormat: 'json',)] WalletRequest $walletRequest,
         WalletService $walletService,
     ): JsonResponse {
         /** @var User $user */
@@ -37,7 +36,7 @@ class WalletController extends AbstractController
             );
         }
 
-        $wallet = $walletService->createWallet($walletCreateRequest, $user);
+        $wallet = $walletService->createWallet($walletRequest, $user);
 
         return new JsonResponse(
             [
@@ -53,8 +52,31 @@ class WalletController extends AbstractController
         requirements: ['id' => '\d+'],
         methods: ['GET']
     )]
-    public function getBalance(Wallet $wallet): Response
+    public function getBalance(Wallet $wallet): JsonResponse
     {
+        return new JsonResponse(
+            [
+                'status' => 'success',
+                'balance' => $wallet->getFormattedBalance()
+            ],
+            Response::HTTP_OK
+        );
+    }
+
+    #[Route(
+        '/api/wallet/{id}/update-balance',
+        requirements: ['id' => '\d+'],
+        methods: ['POST']
+    )]
+    public function updateBalance(
+        #[MapRequestPayload(acceptFormat: 'json')] TransactionRequest $transactionRequest,
+        Wallet $wallet,
+        TransactionService $transactionService,
+        WalletService $walletService
+    ): JsonResponse {
+        $transaction = $transactionService->create($transactionRequest, $wallet);
+        $walletService->updateBalance($transaction, $wallet);
+
         return new JsonResponse(
             [
                 'status' => 'success',

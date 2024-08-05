@@ -2,10 +2,11 @@
 
 namespace App\Service\Wallet;
 
-use App\DTO\WalletCreateRequest;
+use App\DTO\WalletRequest;
 use App\Entity\Transaction;
 use App\Entity\User;
 use App\Entity\Wallet;
+use App\Enum\CurrencyEnum;
 use App\Enum\TransactionReasonEnum;
 use App\Service\ExchangeRate\ExchangeRateService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,12 +20,13 @@ final class WalletService
     }
 
     public function createWallet(
-        WalletCreateRequest $walletCreateRequest,
+        WalletRequest $walletRequest,
         User $user
     ): Wallet {
+        $currencyEnum = CurrencyEnum::from($walletRequest->currency);
         $wallet = new Wallet();
         $wallet
-            ->setCurrency($walletCreateRequest->currency)
+            ->setCurrency($currencyEnum)
             ->setUser($user);
 
         $this->em->persist($wallet);

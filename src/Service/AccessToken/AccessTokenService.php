@@ -6,7 +6,7 @@ use App\Entity\AccessToken;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 
-class AccessTokenService
+final class AccessTokenService
 {
     public function __construct(private readonly EntityManagerInterface $em)
     {

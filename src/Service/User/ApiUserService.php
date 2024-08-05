@@ -11,7 +11,7 @@ use Symfony\Component\PasswordHasher\Exception\InvalidPasswordException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 
-class ApiUserService
+final class ApiUserService
 {
     public function __construct(
         private readonly UserRepository $userRepository,
