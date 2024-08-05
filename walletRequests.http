@@ -8,6 +8,7 @@ Authorization: Bearer 1e498852585afea56d389bba55cca298cc95fff8e52f16531a6de00cc4
   "currency": "usd"
 }
 
+
 ### Create wallet
 POST http://127.0.0.1:8337/api/wallet/create
 Accept: application/json
@@ -18,6 +19,7 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
   "currency": "rub"
 }
 
+
 ### Create wallet
 POST http://127.0.0.1:8337/api/wallet/create
 Accept: application/json
@@ -27,6 +29,7 @@ Authorization: Bearer 1e498852585afea56d389bba55cca298cc95fff8e52f16531a6de00cc4
 {
   "currency": "gbp"
 }
+
 
 ### Get balance
 GET http://127.0.0.1:8337/api/wallet/1/balance
@@ -45,5 +48,5 @@ Authorization: Bearer 1e498852585afea56d389bba55cca298cc95fff8e52f16531a6de00cc4
   "currency": "usd",
   "type": "debit",
   "reason": "stock",
-  "amount": 1250
+  "amount": 363550
 }
