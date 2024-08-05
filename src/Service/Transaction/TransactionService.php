@@ -21,8 +21,8 @@ final class TransactionService
     {
         $transaction = new Transaction();
         $currencyEnum = CurrencyEnum::from($transactionRequest->currency);
-        $typeEnum = TransactionTypeEnum::from($transactionRequest->currency);
-        $reasonEnum = TransactionReasonEnum::from($transactionRequest->currency);
+        $typeEnum = TransactionTypeEnum::from($transactionRequest->type);
+        $reasonEnum = TransactionReasonEnum::from($transactionRequest->reason);
 
         $transaction
             ->setCurrency($currencyEnum)
